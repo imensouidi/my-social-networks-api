@@ -8,7 +8,9 @@ exports.register = async (req, res) => {
     ...req.body,
     password: hashed
   });
-  res.status(201).json(user);
+  const { password, ...userData } = user.toObject();
+  res.status(201).json(userData);
+
 };
 
 exports.login = async (req, res) => {
